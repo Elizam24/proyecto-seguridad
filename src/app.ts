@@ -1,23 +1,24 @@
-import express from "express";
-import { UserController } from "./controllers/user.controller";
-import { PasswordController } from "./controllers/password.controller";
+import "reflect-metadata";
+import dotenv from "dotenv";
+dotenv.config();
 
-const app = express();
+import { env } from "./config";
+import { client } from "./database/connections";
+import { appRouter } from "./routes/app.router";
+import { Server } from "./server";
 
-// Middleware para parsear el cuerpo de la solicitud
-app.use(express.json());
+async function main() {
+  // Conexión a la base de datos
+  await client.connect();
 
-// Rutas para los usuarios
-app.post("/api/users", UserController.create.User); // Crear usuario
-app.get("/api/users/:id", UserController.getById); // Obtener usuario por ID
-app.put("/api/users/:id", UserController.update); // Actualizar usuario
-app.delete("/api/users/:id", UserController.delete); // Eliminar usuario
+  // Iniciar el servidor
+  const server = new Server({
+    port: env.PORT || 3000, // Evita que PORT sea `undefined`
+    route: appRouter, // Usa el objeto `appRouter` directamente
+  });
 
-// Rutas para las contraseñas
-app.post("/api/passwords", PasswordController.create); // Crear contraseña
-app.get("/api/passwords/:email", PasswordController.getByEmail); // Obtener contraseña por email
-app.put("/api/passwords/:email", PasswordController.update); // Actualizar contraseña
-app.delete("/api/passwords/:email", PasswordController.delete); // Eliminar contraseña
+  console.log("Servidor en el puerto:", env.PORT || 3000);
+  await server.start();
+}
 
-// Exportar la aplicación
-export default app;
+main();

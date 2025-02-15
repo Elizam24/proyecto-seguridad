@@ -1,27 +1,27 @@
-import express from "express";
-import dotenv from "dotenv";
-import { json, urlencoded } from "body-parser";
-import { appRouter } from "./routes/app.router"; // Ruta para importar las rutas
-import { errorHandler } from "./middlewares/errorHandler"; // Middleware de manejo de errores
+import express, { Router } from "express";
 
-// Cargar las variables de entorno
-dotenv.config();
+interface Optiones {
+  //
+  port: number;
+  routes: Router;
+}
+export class Server {
+  private readonly app = express();
+  private readonly port: number;
+  private readonly routes: Router;
 
-// Crear la aplicación Express
-const app = express();
+  constructor(options: Optiones) {
+    this.port = options.port;
+    this.routes = options.routes;
+  }
 
-// Middleware para parsear solicitudes JSON y URL-encoded
-app.use(json());
-app.use(urlencoded({ extended: true }));
+  async start() {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(this.routes);
 
-// Rutas de la aplicación
-app.use("/api", appRouter);
-
-// Middleware global para manejar errores
-app.use(errorHandler);
-
-// Iniciar el servidor
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+    this.app.listen(this.port, () => {
+      console.log(`Server started on port ${this.port}`);
+    });
+  }
+}

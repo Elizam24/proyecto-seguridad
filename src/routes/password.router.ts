@@ -1,5 +1,5 @@
 import express from "express";
-import { PasswordController } from "../controllers/password.controller";
+import { PasswordController } from "./controllers/password.controller";
 import { validateCreatePassword } from "../middlewares/validateCreatePassword"; // Middleware de validación para crear contraseña
 import { validateUpdatePassword } from "../middlewares/validateUpdatePassword"; // Middleware de validación para actualizar contraseña
 import { errorHandler } from "../middlewares/errorHandler"; // Middleware global de manejo de errores

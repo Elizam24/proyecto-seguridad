@@ -1,5 +1,5 @@
 import express from "express";
-import { UserController } from "../controllers/user.controller";
+import { UserController } from "./controllers/user.controller";
 import { validateCreateUser } from "../middlewares/validateCreateUser"; // Middleware de validación
 import { validateUpdateUser } from "../middlewares/validateUpdateUser"; // Middleware de validación
 import { errorHandler } from "../middlewares/errorHandler"; // Middleware global de manejo de errores
