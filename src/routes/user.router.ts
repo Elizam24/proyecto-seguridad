@@ -2,7 +2,7 @@ import express from "express";
 import { UserController } from "../controllers/user.controller";
 import { validateCreateUser } from "../middlewares/validateCreateUser"; // Middleware de validación
 import { validateUpdateUser } from "../middlewares/validateUpdateUser"; // Middleware de validación
-import { handleError } from "../errors/handleError"; // Middleware global de manejo de errores
+import { errorHandler } from "../middlewares/errorHandler"; // Middleware global de manejo de errores
 
 const router = express.Router();
 
@@ -19,6 +19,6 @@ router.put("/users/:id", validateUpdateUser, UserController.updateUser);
 router.delete("/users/:id", UserController.deleteUser);
 
 // Middleware para manejar errores
-router.use(handleError);
+router.use(errorHandler);
 
 export { router };

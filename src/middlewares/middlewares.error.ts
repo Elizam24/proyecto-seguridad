@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-import { AppError } from "./error/app.error";
+import { AppError } from "../error/app.error";
 import { PasswordValidationError } from "../error/PasswordValidationError";
 import { PasswordNotFoundError } from "../error/PasswordNotFoundError";
 import { PasswordMismatchError } from "../error/PasswordMismatchError";
@@ -43,7 +43,7 @@ app.post(
 );
 
 // Middleware para manejar errores globales
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: error, req: Request, res: Response, next: NextFunction) => {
   // Si el error es de tipo AppError o cualquier error personalizado
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({
