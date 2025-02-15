@@ -13,8 +13,8 @@ async function main() {
 
   // Iniciar el servidor
   const server = new Server({
-    port: env.PORT || 3000, // Evita que PORT sea `undefined`
-    route: appRouter, // Usa el objeto `appRouter` directamente
+    port: env.PORT || 3000,
+    route: appRouter,
   });
 
   console.log("Servidor en el puerto:", env.PORT || 3000);

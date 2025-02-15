@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { PasswordValidationError } from "../errors/PasswordValidationError";
+import { PasswordValidationError } from "../error/PasswordValidationError";
 
 export function validateCreatePassword(
   req: Request,
