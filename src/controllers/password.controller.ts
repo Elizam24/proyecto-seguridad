@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { PasswordService } from "../services/passwordService";
-import { PasswordMismatchError } from "../errors/PasswordMismatchError";
-import { PasswordNotFoundError } from "../errors/PasswordNotFoundError";
-import { PasswordValidationError } from "../errors/PasswordValidationError";
+import { PasswordService } from "../services/password.service";
+import { PasswordMismatchError } from "../error/PasswordMismatchError";
+import { PasswordNotFoundError } from "../error/PasswordNotFoundError";
+import { PasswordValidationError } from "../error/PasswordValidationError";
 import { AppError } from "../error/app.error";
 
 const passwordService = new PasswordService();

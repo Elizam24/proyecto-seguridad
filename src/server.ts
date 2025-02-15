@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { json, urlencoded } from "body-parser";
-import { AppRouter } from "./routes/appRouter"; // Ruta para importar las rutas
+import { appRouter } from "./routes/app.router"; // Ruta para importar las rutas
 import { errorHandler } from "./middlewares/errorHandler"; // Middleware de manejo de errores
 
 // Cargar las variables de entorno
@@ -15,7 +15,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // Rutas de la aplicación
-app.use("/api", AppRouter);
+app.use("/api", appRouter);
 
 // Middleware global para manejar errores
 app.use(errorHandler);

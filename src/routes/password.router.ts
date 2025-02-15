@@ -10,7 +10,7 @@ const router = express.Router();
 router.post(
   "/passwords",
   validateCreatePassword, // Middleware para validar los datos antes de crear la contraseña
-  PasswordController.passwordCreated // Controlador para crear la contraseña
+  PasswordController.createPassword // Controlador para crear la contraseña
 );
 
 // Ruta para obtener la contraseña por email
