@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { PasswordMismatchError } from "../error/PasswordMismatchError";
-import { PasswordValidationError } from "../error/PasswordValidation.Error";
+import { PasswordValidationError } from "../error/PasswordValidationError";
 
 export function validateUpdatePassword(
   req: Request,

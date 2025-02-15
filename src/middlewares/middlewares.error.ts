@@ -1,15 +1,15 @@
 import express, { Request, Response, NextFunction } from "express";
-import { AppError } from "./err";
-import { PasswordValidationError } from "./error/Password.Validation.error";
-import { PasswordNotFoundError } from "./errors/PasswordNotFoundError";
-import { PasswordMismatchError } from "./errors/PasswordMismatchError";
-import { UnauthorizedError } from "./errors/UnauthorizedError";
-import { InternalServerError } from "./errors/InternalServerError";
+import { AppError } from "./error/app.error";
+import { PasswordValidationError } from "../error/PasswordValidationError";
+import { PasswordNotFoundError } from "../error/PasswordNotFoundError";
+import { PasswordMismatchError } from "../error/PasswordMismatchError";
+import { UnauthorizedError } from "../error/UnauthorizedError";
+import { InternalServerError } from "../error/InternalServerError";
 
 const app = express();
 
 // Middlewares de configuración y rutas
-app.use(express.json()); // Para recibir solicitudes JSON
+app.use(express.json()); // Para recibir solicitudes JSO
 app.use(express.urlencoded({ extended: true })); // Para recibir datos de formularios
 
 // Ejemplo de una ruta que lanza un error de contraseña
