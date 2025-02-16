@@ -10,21 +10,45 @@ const router = express.Router();
 router.post(
   "/passwords",
   validateCreatePassword, // Middleware para validar los datos antes de crear la contraseña
-  PasswordController.createPassword // Controlador para crear la contraseña
+  async (req, res, next) => {
+    try {
+      await PasswordController.createPassword(req, res);
+    } catch (error) {
+      next(error); // Pasar el error al middleware de manejo de errores
+    }
+  }
 );
 
 // Ruta para obtener la contraseña por email
-router.get("/passwords/:email", PasswordController.getPassword); // Controlador para obtener la contraseña
+router.get("/passwords/:email", async (req, res, next) => {
+  try {
+    await PasswordController.getPassword(req, res);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Ruta para actualizar la contraseña
 router.put(
   "/passwords/:email",
   validateUpdatePassword, // Middleware para validar los datos antes de actualizar la contraseña
-  PasswordController.updatePassword // Controlador para actualizar la contraseña
+  async (req, res, next) => {
+    try {
+      await PasswordController.updatePassword(req, res);
+    } catch (error) {
+      next(error);
+    }
+  }
 );
 
 // Ruta para eliminar la contraseña
-router.delete("/passwords/:email", PasswordController.deletePassword); // Controlador para eliminar la contraseña
+router.delete("/passwords/:email", async (req, res, next) => {
+  try {
+    await PasswordController.deletePassword(req, res);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Middleware global para manejar errores
 router.use(errorHandler);

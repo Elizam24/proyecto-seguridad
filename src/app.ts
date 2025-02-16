@@ -1,9 +1,9 @@
 import "reflect-metadata";
 import dotenv from "dotenv";
-dotenv.config();
 
+dotenv.config();
 import { env } from "./config";
-import { client } from "./database/connections";
+import { client } from "./database/postgres";
 import { appRouter } from "./routes/app.router";
 import { Server } from "./server";
 
